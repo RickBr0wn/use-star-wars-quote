@@ -12,7 +12,18 @@ npm install --save @rickbrown/use-star-wars-quote
 
 ## Usage
 
+```jsx
+import React, { Component } from 'react'
 
+import { useMyHook } from '@rickbrown/use-star-wars-quote'
+
+const Example = () => {
+  const example = useMyHook()
+  return (
+    <div>{example}</div>
+  )
+}
+```
 
 ## License
 
