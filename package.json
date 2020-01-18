@@ -1,6 +1,6 @@
 {
   "name": "@rickbrown/use-star-wars-quote",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a custom React hook the provides a random quote from the star wars films.",
   "author": "RickBr0wn",
   "license": "MIT",
@@ -14,12 +14,13 @@
   },
   "scripts": {
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
+    "test:watch": "react-scripts test --env=jsdom --watchAll",
     "build": "rollup -c",
     "start": "rollup -c -w",
     "prepare": "yarn run build",
     "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "postpublish": "git push --tags"
   },
   "peerDependencies": {
     "react": "^16.8.6"
@@ -45,9 +46,9 @@
     "@babel/plugin-syntax-import-meta": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "@testing-library/react-hooks": "^3.2.1",
     "babel-eslint": "^10.0.1",
     "cross-env": "^5.2.0",
-    "eslint": "5.16.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-config-standard-react": "^6.0.0",
     "eslint-plugin-import": "^2.13.0",
@@ -56,13 +57,17 @@
     "eslint-plugin-react": "^7.10.0",
     "eslint-plugin-standard": "^3.1.0",
     "gh-pages": "^2.0.1",
-    "react": "^16.8.6",
+    "react": "16.12.0",
     "react-scripts": "^3.0.1",
+    "react-test-renderer": "16.12.0",
     "rollup": "^1.1.2",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-url": "^2.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

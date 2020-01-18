@@ -5,10 +5,14 @@ const useStarWarsQuote = () => {
   const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
+    const abortController = new AbortController();
+    const signal = abortController.signal;
+
     async function getStarWarsQuote() {
       setLoading(true);
       await fetch(
-        'http://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuote'
+        'http://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuote',
+        { signal }
       )
         .then(res => res.json())
         .then(data => {
@@ -20,6 +24,10 @@ const useStarWarsQuote = () => {
         );
     }
     getStarWarsQuote();
+
+    return function cleanup() {
+      abortController.abort();
+    };
   }, [setLoading]);
   return { quote, loading };
 };
